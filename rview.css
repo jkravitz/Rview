@@ -1,4 +1,4 @@
-.thumbnail:hover {
+.photoPopUp:hover {
 	box-shadow: 0px 0px 6px 6px #C8DEE0
 }
 
@@ -12,7 +12,8 @@
 	
 
 	display: inline;
-	background-color: rgba(45, 150, 186, .7);
+	/*background-color: rgba(45, 150, 186, .7);*/
+	background-color: rgba(32, 120, 164, .7);
 	background-size: cover;
 
 }
@@ -24,7 +25,7 @@
 	z-index: 999;
 	top: 8%;
 	display:block;
-	margin-left:100px;
+	margin-left:10%;
 	margin-right:auto;
 
 	
