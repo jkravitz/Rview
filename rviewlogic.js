@@ -34,7 +34,12 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             divContainer.addEventListener('backbutton', function(){
               document.getElementById('photoThing').remove();
+              //somehow override default...
             });  
+            var photoContainer = document.createElement('div');
+            photoContainer.setAttribute('id', 'actualPhotoContainer');
+            divContainer.appendChild(photoContainer);
+
             var alink = document.createElement("a");
             alink.setAttribute("href", this.href);
             alink.setAttribute("id", "imageLinkToClickOn" )
@@ -44,8 +49,9 @@ document.addEventListener('DOMContentLoaded', function () {
             image.setAttribute("src", this.href);
             image.setAttribute("alt", "");
 
-            var container= document.getElementById('photoThing').appendChild(alink);
-            container = document.getElementById('imageLinkToClickOn').appendChild(image);
+            photoContainer.appendChild(alink);
+            alink.appendChild(image);
+
 
 
           });      
@@ -98,4 +104,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 });
+
+
 

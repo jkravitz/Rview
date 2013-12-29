@@ -1,6 +1,5 @@
 1) clicking on '?' or '!' thumbnails = weird behavior
 2) imgur doesnt work when it is an album with more than 1 photo
-3) picture doesnt center perfectly
 4) Slow internet connection = bad experience...use jquery loading to show something is happening
 5) livememe doesnt work
 6) youtube should be similar experience (embedded floating video)
