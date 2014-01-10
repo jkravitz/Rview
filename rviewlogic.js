@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
             alink.appendChild(image);
           }
           else{
-            window.location.replace(this.href); //quit popup photo
+            window.location.href = this.href; //quit popup photo
           }
 
           });
