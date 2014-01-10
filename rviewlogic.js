@@ -1,4 +1,4 @@
-// Code created by Jordan Kravitz,
+// Code created by Jordan Kravitz, jkravitz61@gmail.com
 
 
 var imagesToZoom;
@@ -19,10 +19,10 @@ document.addEventListener('DOMContentLoaded', function () {
           || imagesToZoomList[i].href.indexOf('.gif')!=-1)
         ){
           imagesToZoom[i].className = tempClassName + " photoPopUp"
+        
           imagesToZoom[i].id=i;
           var link= document.getElementById(i);
           //click logic for clicking on thumbnail
-          var tempNum = i;
           link.addEventListener('click', function(link){
             //function that occurs when a thumbnail is clicked
             link.preventDefault();
@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
         imagesToZoom[i].id=i;
         var link= document.getElementById(i);
         //click logic for clicking on thumbnail
-        var tempNum = i;
         link.addEventListener('click', function(link){
         //function that occurs when a thumbnail is clicked
           link.preventDefault();
@@ -98,6 +97,50 @@ document.addEventListener('DOMContentLoaded', function () {
 
           });
 
+      }
+      else if(imagesToZoomList[i].href.indexOf('youtube')!=-1 && imagesToZoomList[i].href.indexOf('v=')!=-1){//could link to comments and such
+        imagesToZoom[i].id=i;
+        imagesToZoom[i].className = tempClassName + " youtubePopUp";
+
+        var link= document.getElementById(i);
+        //click logic for clicking on thumbnail
+        link.addEventListener('click', function(link){
+          //function that occurs when a thumbnail is clicked
+          link.preventDefault();
+          var divContainer = document.createElement('div');
+          divContainer.setAttribute('id', 'videoThing');
+          document.body.appendChild(divContainer);
+          divContainer.addEventListener('click', function(){
+             document.getElementById('videoThing').remove();
+          });
+          divContainer.addEventListener('backbutton', function(){
+            document.getElementById('videoThing').remove();
+            //somehow override default...   
+          });  
+          var videoContainer = document.createElement('div');
+          videoContainer.setAttribute('id', 'actualVideoContainer');
+          divContainer.appendChild(videoContainer);
+
+          var startYoutubeAddress = this.href.indexOf('v=') + 2;
+          var endYoutubeAddress = startYoutubeAddress;
+          while (this.href.charAt(endYoutubeAddress))
+            endYoutubeAddress++;
+          var videoSubAddress = this.href.substring(startYoutubeAddress,endYoutubeAddress);
+          //var video =  '<iframe title="YouTube video player" class="youtube-player" type="text/html" width="640" height="390" src="' + this.href + ' frameborder="0" allowFullScreen></iframe>';
+          var videoToAdd = document.createElement('iframe');
+          videoToAdd.title = "YouTube video player";
+          videoToAdd.class = "youtube-player"; 
+          videoToAdd.type = "text/html";
+          videoToAdd.width = 640;
+          videoToAdd.height = 390;
+          videoToAdd.src = "http://www.youtube.com/embed/" + videoSubAddress;//qw1vm_wdpy0"//this.href;
+          videoToAdd.frameBorder =0;
+
+
+          //videoToAdd.setAttribute(allowFullScreen,"");
+         // video.setAttribute("id", "actualVideo");
+          document.getElementById('actualVideoContainer').appendChild(videoToAdd);
+        });  
       }
   i++;
   }
