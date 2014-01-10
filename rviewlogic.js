@@ -77,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
           link.preventDefault();
           var divContainer = document.createElement('div');
           divContainer.setAttribute('id', 'photoThing');
-          document.body.appendChild(divContainer);
           divContainer.addEventListener('click', function(){
              document.getElementById('photoThing').remove();
           });
@@ -92,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
           var photoContainer = document.createElement('div');
           photoContainer.setAttribute('id', 'actualPhotoContainer');
-          divContainer.appendChild(photoContainer);
 
           //create link to click on image to view original link
           var alink = document.createElement("a");
@@ -100,13 +98,22 @@ document.addEventListener('DOMContentLoaded', function () {
           alink.setAttribute("id", "imageLinkToClickOn" )
 
           var image = document.createElement("img");
-          image.setAttribute("src", 'http://i.imgur.com/'+ substring + '.gif');
-         // if(image.width>0 && image.height>0){//real image, not an album
+            image.setAttribute("src", 'http://i.imgur.com/'+ substring + '.gif');
+          if(image.width>0 && image.height>0){//real image, not an album
             image.setAttribute("id", "actualPhoto");
             image.setAttribute("alt", this.href);
+            /*image.onerror = function (e) {
+              alert(e)
+                window.location.replace(e.href); //quit popup photo
+            };*/
+            document.body.appendChild(divContainer);
+            divContainer.appendChild(photoContainer);
             photoContainer.appendChild(alink);
             alink.appendChild(image);
-          //}
+          }
+          else{
+            window.location.replace(this.href); //quit popup photo
+          }
 
           });
 
