@@ -1,9 +1,18 @@
 // Code created by Jordan Kravitz, jkravitz61@gmail.com
-
+// Feel free to use any part of this code for non-monetary projects. Please contact me otherwise.
 
 var imagesToZoom;
 var imagesToZoomList; 
 
+document.onkeydown = function(e) {
+  if (e.keyCode == 27) { 
+    var toDelete = document.getElementById('photoThing');
+    if(!toDelete)
+      toDelete = document.getElementById('videoThing');
+    if(toDelete)
+      toDelete.remove();
+   }   
+};
 
 // Run script as soon as the document's DOM is ready...on reddit this never happens so extension forces it
 document.addEventListener('DOMContentLoaded', function () {
@@ -19,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
           || imagesToZoomList[i].href.indexOf('.gif')!=-1)
         ){
           imagesToZoom[i].className = tempClassName + " photoPopUp"
-        
+
           imagesToZoom[i].id=i;
           var link= document.getElementById(i);
           //click logic for clicking on thumbnail
@@ -81,6 +90,10 @@ document.addEventListener('DOMContentLoaded', function () {
             endIndex++;//find the end index
           var substring = this.href.substring(startIndex, endIndex);
 
+          var photoContainer = document.createElement('div');
+          photoContainer.setAttribute('id', 'actualPhotoContainer');
+          divContainer.appendChild(photoContainer);
+
           //create link to click on image to view original link
           var alink = document.createElement("a");
           alink.setAttribute("href", this.href);
@@ -88,12 +101,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
           var image = document.createElement("img");
           image.setAttribute("src", 'http://i.imgur.com/'+ substring + '.gif');
-          if(image.width>0 &&image.height>0){//real image, not an album
+         // if(image.width>0 && image.height>0){//real image, not an album
             image.setAttribute("id", "actualPhoto");
             image.setAttribute("alt", this.href);
-            var container= document.getElementById('photoThing').appendChild(alink);
-            container = document.getElementById('imageLinkToClickOn').appendChild(image);
-          }
+            photoContainer.appendChild(alink);
+            alink.appendChild(image);
+          //}
 
           });
 

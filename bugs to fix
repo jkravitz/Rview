@@ -1,5 +1,4 @@
-1) clicking on '?' or '!' thumbnails = weird behavior
 2) imgur doesnt work when it is an album with more than 1 photo
 4) Slow internet connection = bad experience...use jquery loading to show something is happening
 7) code looks like shit
-8)add google analytics things
+8) "x" button on photos for better UI
